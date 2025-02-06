@@ -1,0 +1,15 @@
+def is_mathematically_beautiful(x, k):
+    while x > 0:
+        if x % k > 1:
+            return "NO"
+        x //= k
+    return "YES"
+
+# Read number of test cases
+T = int(input())
+
+for _ in range(T):
+    # Read each test case
+    x, k = map(int, input().split())
+    # Determine if x is mathematically beautiful
+    print(is_mathematically_beautiful(x, k))
