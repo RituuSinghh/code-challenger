@@ -1,0 +1,13 @@
+from typing import List
+
+class Solution:
+    def intersection(self, nums: List[List[int]]) -> List[int]:
+        # Convert the first list into a set
+        common_elements = set(nums[0])
+
+        # Iterate over the rest of the lists and perform intersection
+        for lst in nums[1:]:
+            common_elements.intersection_update(lst)
+
+        # Return the sorted list of common elements
+        return sorted(common_elements)
