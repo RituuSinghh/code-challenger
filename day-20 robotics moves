@@ -1,0 +1,27 @@
+#include <stdio.h>
+#include <stdlib.h>
+
+// Function to calculate the sum of absolute values
+long long calculateSum(int moves) {
+    long long sum = 0;
+    for (int i = -moves; i <= moves; i++) {
+        sum += abs(i);
+    }
+    return sum;
+}
+
+int main() {
+    int t;
+    scanf("%d", &t); // Number of test cases
+
+    while (t--) {
+        int n;
+        scanf("%d", &n); // Number of moves
+
+        long long result = calculateSum(n);
+        printf("%lld\n", result);
+    }
+
+    return 0;
+}
+robotics move
