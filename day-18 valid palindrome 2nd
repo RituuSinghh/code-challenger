@@ -1,0 +1,22 @@
+
+    def validPalindrome(self, s: str) -> bool:
+        # Helper function to check if a substring is a palindrome
+        def is_palindrome(subs: str, left: int, right: int) -> bool:
+            while left < right:
+                if subs[left] != subs[right]:
+                    return False
+                left += 1
+                right -= 1
+            return True
+
+        left, right = 0, len(s) - 1
+
+        while left < right:
+            # If characters don't match, try skipping one character on either side
+            if s[left] != s[right]:
+                return is_palindrome(s, left + 1, right) or is_palindrome(s, left, right - 1)
+            left += 1
+            right -= 1
+
+        # If no mismatch is found, it's already a palindrome
+        return True
