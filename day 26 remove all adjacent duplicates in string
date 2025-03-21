@@ -1,0 +1,13 @@
+class Solution:
+    def removeDuplicates(self, s: str) -> str:
+        stack = []
+          remove all adjacent duplicates
+        for char in s:
+            # If the stack is not empty and the top matches the current character, pop it (remove duplicate)
+            if stack and stack[-1] == char:
+                stack.pop()
+            else:
+                stack.append(char)
+
+        # Join the stack to form the resulting string
+        return ''.join(stack)
