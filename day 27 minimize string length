@@ -1,0 +1,14 @@
+class Solution:
+    def minimizedStringLength(self, s: str) -> int:
+        # Use a set to keep track of unique characters
+        unique_chars = set(s)
+
+        # The length of the minimized string will be the count of unique characters
+        return len(unique_chars)
+
+# Example usage
+solution = Solution()
+print(solution.minimizedStringLength("aaabc"))  # Output: 3
+print(solution.minimizedStringLength("cbbd"))   # Output: 3
+print(solution.minimizedStringLength("baadccab")) # Output: 4
+minimize string lenght
