@@ -1,0 +1,72 @@
+class ListNode:
+    def _init_(self, key: int, value: int):
+        self.key = key
+        self.value = value
+        self.next = None
+
+class MyHashMap:
+    def _init_(self):
+        self.size = 1000  # Number of buckets
+        self.buckets = [None] * self.size  # Initialize the bucket array
+
+    def _hash(self, key: int) -> int:
+        """Compute the bucket index using the hash function."""
+        return key % self.size
+
+    def put(self, key: int, value: int) -> None:
+        """Insert a key-value pair into the HashMap. Update if the key exists."""
+        index = self._hash(key)
+        
+        # If no bucket exists, create a new node
+        if self.buckets[index] is None:
+            self.buckets[index] = ListNode(key, value)
+            return
+        
+        # Traverse the linked list at the bucket
+        curr = self.buckets[index]
+        while curr:
+            # If key already exists, update the value
+            if curr.key == key:
+                curr.value = value
+                return
+            if curr.next is None:
+                break
+            curr = curr.next
+        
+        # If key not found, add a new node to the end of the list
+        curr.next = ListNode(key, value)
+
+    def get(self, key: int) -> int:
+        """Retrieve the value associated with the key, or return -1 if not found."""
+        index = self._hash(key)
+        curr = self.buckets[index]
+        
+        # Search for the key in the linked list
+        while curr:
+            if curr.key == key:
+                return curr.value
+            curr = curr.next
+        
+        return -1  # Key not found
+
+    def remove(self, key: int) -> None:
+        """Remove the key-value pair if it exists."""
+        index = self._hash(key)
+        curr = self.buckets[index]
+        
+        # If the bucket is empty, return immediately
+        if not curr:
+            return
+        
+        # If the node to delete is the head of the list
+        if curr.key == key:
+            self.buckets[index] = curr.next
+            return
+        
+        # Find the node to delete and update the links
+        prev = None
+        while curr:
+            if curr.key == key:
+                prev.next = curr.next  # Remove the node from the chain
+                return
+            prev, curr = curr, curr.next
