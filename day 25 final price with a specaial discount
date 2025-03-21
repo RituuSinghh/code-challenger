@@ -1,0 +1,23 @@
+from typing import List
+
+class Solution:
+    def finalPrices(self, prices: List[int]) -> List[int]:
+        n = len(prices)
+        answer = prices[:]  # Initialize answer with the original prices
+        stack = []  # Monotonic stack to track indices
+
+        for i in range(n):
+            # Find the next smaller or equal price
+            while stack and prices[stack[-1]] >= prices[i]:
+                idx = stack.pop()
+                answer[idx] -= prices[i]
+            stack.append(i)
+
+        return answer
+
+# Example usage
+sol = Solution()
+print(sol.finalPrices([8, 4, 6, 2, 3]))  # Output: [4, 2, 4, 2, 3]
+print(sol.finalPrices([1, 2, 3, 4, 5]))  # Output: [1, 2, 3, 4, 5]
+print(sol.finalPrices([10, 1, 1, 6]))   # Output: [9, 0, 1, 6]
+final price discount
