@@ -1,0 +1,13 @@
+class Solution:
+    def minOperations(self, logs: List[str]) -> int:
+        folderDepth = 0
+
+        for log in logs:
+            if log == "../":
+                folderDepth = max(0, folderDepth - 1)  # Move up one level, but not below root
+            elif log == "./":
+                continue  # Stay in the current directory
+            else:
+                folderDepth += 1  # Move into a new directory
+
+        return
